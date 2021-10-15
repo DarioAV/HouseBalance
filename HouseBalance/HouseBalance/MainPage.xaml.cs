@@ -22,10 +22,7 @@ namespace HouseBalance
             base.OnAppearing();
             try
             {
-                BalanceDayList.ItemsSource = App.SQLiteDB.GetDbBalances();
-                BalanceHourList.ItemsSource = App.SQLiteDB.GetDbBalances();
-                BalanceTypeList.ItemsSource = App.SQLiteDB.GetDbBalances();
-                BalanceAmountList.ItemsSource = App.SQLiteDB.GetDbBalances();
+                BalanceList.ItemsSource = App.SQLiteDB.GetDbBalances();
             }
             catch (Exception ex)
             {
@@ -67,10 +64,7 @@ namespace HouseBalance
                 Selector.SelectedItem = "";
                 await DisplayAlert("Registro", "Los datos se guardaron correctamente", "Listo");
                 var balance = App.SQLiteDB.GetDbBalances();
-                BalanceDayList.ItemsSource = balance;
-                BalanceHourList.ItemsSource = balance;
-                BalanceTypeList.ItemsSource = balance;
-                BalanceAmountList.ItemsSource = balance;
+                BalanceList.ItemsSource = balance;
                 DateEnter.IsVisible = false;
             }
             else

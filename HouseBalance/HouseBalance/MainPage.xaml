@@ -8,9 +8,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="250"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="4" BackgroundColor="#8c8c8c">
+        <Grid Grid.Row="0" BackgroundColor="#8c8c8c">
             <Label HorizontalOptions="Center" 
                    VerticalOptions="Center" 
                    Text="HouseBalance" 
@@ -18,85 +17,60 @@
                    FontSize="24"
                    FontAttributes="Bold"/>
         </Grid>
-        <Grid Grid.Row="1" BackgroundColor="White" Grid.ColumnSpan="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-        </Grid>
-        <CollectionView Grid.Row="1" Grid.Column="0" x:Name="BalanceDayList" BackgroundColor="White">
+       
+        <CollectionView Grid.Row="1" Grid.Column="0" x:Name="BalanceList" BackgroundColor="White">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="local:DbBalance">
-                    <Label HorizontalTextAlignment="Center" 
+                    <Grid ColumnDefinitions="1*,1*,1*,1*">
+                        <Label HorizontalTextAlignment="Center" 
                            Margin="2"
                            FontSize="18"
-                           Text="{Binding CaptureDay, StringFormat='{0:MM/dd/yy}'}"
+                           Text="{Binding CaptureDay, StringFormat='{0:dd/MM/yy}'}"
                            TextColor="Black"/>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        
-        <CollectionView Grid.Row="1" Grid.Column="1" x:Name="BalanceHourList">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="local:DbBalance">
-                    <Label HorizontalTextAlignment="Center" 
+                        <Label Grid.Column="1" HorizontalTextAlignment="Center" 
                            Margin="2"
                            FontSize="18"
                            Text="{Binding CaptureDay, StringFormat='{0:hh:mm tt}'} "
                            TextColor="Black"/>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        
-        <CollectionView Grid.Row="1" Grid.Column="2" x:Name="BalanceTypeList">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="local:DbBalance">
-                    <Label HorizontalTextAlignment="Center" 
+                        <Label Grid.Column="2" HorizontalTextAlignment="Center" 
                            Margin="2"
                            FontSize="18"
                            Text="{Binding BalanceType}"
                            TextColor="Black"/>
+                        <Label Grid.Column="3"
+                               TextColor="Black"
+                               Margin="2"
+                               FontSize="18">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Amount}"/>
+                                    <Span Text="£"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
         
-        <CollectionView Grid.Row="1" Grid.Column="3" x:Name="BalanceAmountList">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="local:DbBalance">
-                    <Label HorizontalTextAlignment="Center" 
-                           FontSize="18"
-                           Margin="2"
-                           TextColor="Black">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding Amount}"/>
-                                <Span Text="£"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <Grid Grid.Row="2"
-              Grid.ColumnSpan="4"
-              BackgroundColor="White"
+        <Grid Grid.Row="1"
+              HorizontalOptions="End"
+              VerticalOptions="End"
               Padding="0,0,20,20">
-            <Button Padding="0,0,0,4"
+            <Button Padding="0,0,0,3"
                 BackgroundColor="#8c8c8c"
                 Text="+"
                 TextColor="White"
                 FontAttributes="Bold"
-                FontSize="50"
-                VerticalOptions="End"
-                HorizontalOptions="End"
+                FontSize="40"
                 WidthRequest="60"
                 HeightRequest="60"
                 CornerRadius="30"
                 Clicked="Button_Add_Balance"/>
         </Grid>
-        <Grid Grid.Row="2" Grid.ColumnSpan="4" x:Name="DateEnter" 
+        <Grid Grid.Row="1" x:Name="DateEnter"
+              HeightRequest="250"
+              VerticalOptions="EndAndExpand"
               Padding="12,0,12,12"
               IsVisible="false"
               BackgroundColor="#8c8c8c">
