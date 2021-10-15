@@ -17,11 +17,14 @@
                    FontSize="24"
                    FontAttributes="Bold"/>
         </Grid>
-       
+
         <CollectionView Grid.Row="1" Grid.Column="0" x:Name="BalanceList" BackgroundColor="White">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="local:DbBalance">
                     <Grid ColumnDefinitions="1*,1*,1*,1*">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Grid.GestureRecognizers>
                         <Label HorizontalTextAlignment="Center" 
                            Margin="2"
                            FontSize="18"
@@ -69,16 +72,12 @@
                 Clicked="Button_Add_Balance"/>
         </Grid>
         <Grid Grid.Row="1" x:Name="DateEnter"
-              HeightRequest="250"
+              HeightRequest="200"
               VerticalOptions="EndAndExpand"
               Padding="12,0,12,12"
               IsVisible="false"
-              BackgroundColor="#8c8c8c">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+              BackgroundColor="#8c8c8c"
+              RowDefinitions="1*,1*,1*">
             <Grid Grid.Row="0">
                 <Label Text="Introduzca una cantidad" 
                    TextColor="White"
@@ -88,7 +87,8 @@
                    HorizontalOptions="Start"/>
                 <local:CustomEntry EntryBorderColor="Black" x:Name="RemainingAmount" BackgroundColor="White"
                    Keyboard="Numeric"
-                   WidthRequest="150"
+                   WidthRequest="120"
+                   HorizontalTextAlignment="Center"
                    VerticalOptions="Center" 
                    HorizontalOptions="End"/>
             </Grid>
@@ -103,7 +103,7 @@
                     BackgroundColor="White"
                     VerticalOptions="Center"
                     HorizontalOptions="End"
-                    WidthRequest="150"
+                    WidthRequest="120"
                     HorizontalTextAlignment="Center"/>
             </Grid>
             <Grid Grid.Row="2" >

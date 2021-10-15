@@ -96,6 +96,11 @@ namespace HouseBalance
 
             return true;
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            DateEnter.IsVisible = false;
+        }
     }
 
     public class SQLiteHelper //Clase para la creacion de la base de datos
@@ -135,7 +140,7 @@ namespace HouseBalance
         }
     }
 
-    public class DbBalance   //Clase creada para las propiedades de la item de la base de datos
+    public class DbBalance   //Clase creada para las propiedades del item de la base de datos
     {
         [PrimaryKey, AutoIncrement]
         public int IdBalance { get; set; }
@@ -149,7 +154,7 @@ namespace HouseBalance
         public static readonly BindableProperty CornerRadiusProperty =
             BindableProperty.Create("CornerRadius", typeof(int), typeof(CustomEntry), 0);
 
-        public int EntryCornerRadius 
+        public int EntryCornerRadius
         {
             get { return (int)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
